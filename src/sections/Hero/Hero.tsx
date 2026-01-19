@@ -153,21 +153,21 @@ export default function Hero() {
         {/* Hero Section */}
         <section
           ref={heroRef}
-          className="h-screen flex flex-col items-center justify-center text-center px-5"
+          className="h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20"
         >
           {/* Rating Badge */}
           <div
             ref={ratingBadgeRef}
-            className="flex items-center gap-[15px] mb-10"
+            className="flex items-center gap-3 sm:gap-4 md:gap-[15px] lg:gap-5 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-16"
           >
             <div className="hidden md:flex">
-              <div className="w-10 h-10 rounded-full border-[3px] border-white bg-[#E8E8E8]"></div>
-              <div className="w-10 h-10 rounded-full border-[3px] border-white bg-[#9B9B9B] -ml-3"></div>
-              <div className="w-10 h-10 rounded-full border-[3px] border-white bg-[#6B6B6B] -ml-3"></div>
-              <div className="w-10 h-10 rounded-full border-[3px] border-white bg-[#3D4A5C] -ml-3"></div>
+              <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border-[3px] border-white bg-[#E8E8E8]"></div>
+              <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border-[3px] border-white bg-[#9B9B9B] -ml-3 md:-ml-3 lg:-ml-4 xl:-ml-5"></div>
+              <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border-[3px] border-white bg-[#6B6B6B] -ml-3 md:-ml-3 lg:-ml-4 xl:-ml-5"></div>
+              <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border-[3px] border-white bg-[#3D4A5C] -ml-3 md:-ml-3 lg:-ml-4 xl:-ml-5"></div>
             </div>
-            <div className="flex items-center gap-2 text-[15px]">
-              <Star className="w-[18px] h-[18px] fill-[#FFB800] text-[#FFB800]" />
+            <div className="flex items-center gap-2 text-sm sm:text-[15px] md:text-base lg:text-lg xl:text-xl">
+              <Star className="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 fill-[#FFB800] text-[#FFB800]" />
               <span className="font-semibold">5.0</span>
               <span className="text-[#718096]">Rated on Clutch</span>
             </div>
@@ -176,9 +176,9 @@ export default function Hero() {
           {/* Animated Headline */}
           <h1
             ref={headlineRef}
-            className="text-[clamp(36px,5vw,72px)] font-semibold leading-[1.3] max-w-[1200px]"
+            className="text-[clamp(32px,6vw,96px)] lg:text-[clamp(48px,6vw,120px)] xl:text-[clamp(64px,6vw,144px)] font-semibold leading-[1.2] lg:leading-[1.3] max-w-[90%] sm:max-w-[85%] md:max-w-[1200px] lg:max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1800px]"
           >
-            <span className="block mb-2">Your Marketing Partner for</span>
+            <span className="block mb-2 lg:mb-4">Your Marketing Partner for</span>
             <span
               ref={dynamicTextRef}
               className="block font-bold italic min-h-[1.2em] will-change-transform"
@@ -190,7 +190,7 @@ export default function Hero() {
           {/* Description */}
           <p
             ref={descriptionRef}
-            className="mt-8 max-w-[700px] text-[17px] leading-[1.7] text-[#4a5568]"
+            className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 max-w-[90%] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] xl:max-w-[900px] text-sm sm:text-base md:text-[17px] lg:text-lg xl:text-xl 2xl:text-2xl leading-[1.6] md:leading-[1.7] text-[#4a5568]"
           >
             With Hassan, you can set ambitious growth targets, data-backed
             strategies, and drive results with optimized campaigns every month.
@@ -199,14 +199,14 @@ export default function Hero() {
           {/* CTA Buttons */}
           <div
             ref={ctaButtonsRef}
-            className="flex gap-5 mt-10 flex-wrap justify-center"
+            className="flex gap-4 sm:gap-5 md:gap-6 lg:gap-8 mt-8 sm:mt-10 md:mt-12 lg:mt-16 xl:mt-20 flex-wrap justify-center"
           >
-            <button className="bg-[#4169E1] text-white px-9 py-4 rounded-[30px] text-base font-semibold hover:bg-[#3558c7] hover:-translate-y-0.5 transition-all">
+            <button className="bg-[#4169E1] text-white px-6 sm:px-9 md:px-12 lg:px-16 xl:px-20 py-3 sm:py-4 md:py-5 lg:py-6 xl:py-7 rounded-[30px] text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold hover:bg-[#3558c7] hover:-translate-y-0.5 transition-all">
               Schedule a Call
             </button>
-            <button className="bg-transparent text-black px-9 py-4 rounded-[30px] border-2 border-[#e2e8f0] text-base font-semibold hover:border-[#4169E1] hover:text-[#4169E1] hover:-translate-y-0.5 transition-all flex items-center gap-2">
+            <button className="bg-transparent text-black px-6 sm:px-9 md:px-12 lg:px-16 xl:px-20 py-3 sm:py-4 md:py-5 lg:py-6 xl:py-7 rounded-[30px] border-2 border-[#e2e8f0] text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold hover:border-[#4169E1] hover:text-[#4169E1] hover:-translate-y-0.5 transition-all flex items-center gap-2">
               See Pricing
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
             </button>
           </div>
         </section>

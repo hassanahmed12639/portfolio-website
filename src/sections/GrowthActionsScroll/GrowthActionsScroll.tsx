@@ -2,58 +2,81 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { Plus, Send, ArrowLeftRight } from "lucide-react";
 
 export default function GrowthActionsScroll() {
   const sectionRef = useRef<HTMLElement>(null);
-  const wordsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (!sectionRef.current) return;
 
-      const words = wordsRef.current.filter(Boolean);
-      if (words.length === 0) return;
+      const rows = rowsRef.current.filter(Boolean);
+      if (rows.length === 0) return;
 
-      // Set initial state: all words start off-screen at the bottom
-      gsap.set(words, {
-        y: 600,
+      // Set initial state: all rows start slightly below and invisible
+      gsap.set(rows, {
+        y: 40,
         opacity: 0,
       });
 
-      // Create timeline with scroll trigger
+      // Create a single timeline with scroll trigger that pins the section
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
           end: "+=150%",
-          scrub: true,
+          scrub: 1.5,
           pin: true,
         },
       });
 
-      // Animate each word: slide up from bottom to its final position (y: 0)
-      words.forEach((word, i) => {
-        // Slide this word up from bottom to its final position
-        tl.to(
-          word,
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-          },
-          i * 0.5
-        );
-      });
+      // Each button appears on a separate scroll section
+      // First scroll: Add (0-33%)
+      tl.to(
+        rows[0],
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        },
+        0
+      );
+
+      // Second scroll: Send (33-66%)
+      tl.to(
+        rows[1],
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        },
+        0.33
+      );
+
+      // Third scroll: Exchange (66-100%)
+      tl.to(
+        rows[2],
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        },
+        0.66
+      );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   const actions = [
-    { word: "Add" },
-    { word: "Send" },
-    { word: "Exchange" },
+    { word: "Add", icon: Plus, color: "bg-green-500" },
+    { word: "Send", icon: Send, color: "bg-blue-500" },
+    { word: "Exchange", icon: ArrowLeftRight, color: "bg-red-500" },
   ];
 
   return (
@@ -61,18 +84,26 @@ export default function GrowthActionsScroll() {
       ref={sectionRef}
       className="relative h-screen overflow-hidden flex items-center justify-center bg-white"
     >
-      <div className="flex flex-col items-center justify-center gap-24 w-full">
-        {actions.map((action, i) => (
-          <div
-            key={i}
-            ref={(el) => (wordsRef.current[i] = el)}
-            className="text-center"
-          >
-            <h2 className="text-[clamp(5rem,12vw,12rem)] font-bold tracking-tight leading-none">
-              {action.word}
-            </h2>
-          </div>
-        ))}
+      <div className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 w-full max-w-[90%] sm:max-w-5xl md:max-w-6xl lg:max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] px-4 sm:px-5 md:px-8 lg:px-12 xl:px-16 mx-auto">
+        {actions.map((action, i) => {
+          const Icon = action.icon;
+          return (
+            <div
+              key={i}
+              ref={(el) => (rowsRef.current[i] = el)}
+              className="flex items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16"
+            >
+              <div
+                className={`${action.color} w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 rounded-xl flex items-center justify-center flex-shrink-0`}
+              >
+                <Icon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 text-white" />
+              </div>
+              <h2 className="text-[clamp(2rem,6vw,8rem)] lg:text-[clamp(3rem,6vw,10rem)] xl:text-[clamp(4rem,6vw,12rem)] font-bold tracking-tight leading-none">
+                {action.word}
+              </h2>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
