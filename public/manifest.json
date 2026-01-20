@@ -1,0 +1,16 @@
+{
+  "name": "Zyntrex - Your Long-Term Design Partner",
+  "short_name": "Zyntrex",
+  "description": "Your long-term design partner for agencies, startups, enterprises, brands, and SaaS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4169E1",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

@@ -17,7 +17,6 @@ export function initLenis() {
     gestureOrientation: "vertical",
     smoothWheel: true,
     wheelMultiplier: 1,
-    smoothTouch: false,
     touchMultiplier: 2,
     infinite: false,
   });
@@ -53,7 +52,14 @@ export function initLenis() {
         rafId = null;
       }
       window.removeEventListener("resize", handleResize);
-      lenis.destroy();
+      try {
+        lenis.destroy();
+      } catch (error) {
+        // Silently handle destroy errors
+        if (process.env.NODE_ENV === "development") {
+          console.warn("Lenis destroy error:", error);
+        }
+      }
     },
   };
 }

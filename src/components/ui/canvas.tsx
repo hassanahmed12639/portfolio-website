@@ -1,10 +1,11 @@
-function n(e) {
+// @ts-nocheck
+function n(e: any) {
   // @ts-ignore
   this.init(e || {});
 }
 n.prototype = {
   // @ts-ignore
-  init: function (e) {
+  init: function (e: any) {
     // @ts-ignore
     this.phase = e.phase || 0;
     // @ts-ignore
@@ -116,7 +117,7 @@ Line.prototype = {
 };
 
 // @ts-ignore
-function onMousemove(e) {
+function onMousemove(e: any) {
   function o() {
     lines = [];
     for (let e = 0; e < E.trails; e++)
